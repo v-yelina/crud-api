@@ -1,0 +1,23 @@
+{
+  "name": "crud-api",
+  "version": "1.0.0",
+  "description": "Task from NodeJS course in RS School",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --silent"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/v-yelina/crud-api.git"
+  },
+  "keywords": [
+    "crud",
+    "nodejs"
+  ],
+  "author": "v.yelina",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/v-yelina/crud-api/issues"
+  },
+  "homepage": "https://github.com/v-yelina/crud-api#readme"
+}
