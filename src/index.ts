@@ -1,7 +1,15 @@
-const addition = (a: number, b: number): number => {
-  return a + b;
-};
-const number1: number = 5;
-const number2: number = 10;
-const result: number = addition(number1, number2);
-console.log('The result is %d', result);
+import http from 'http';
+import process from 'process';
+import dotenv from 'dotenv';
+dotenv.config()
+
+const PORT = process.env.PORT || 4000;
+const server = http.createServer((_req, res) => {
+  res.writeHead(200, { 'Content-Type': 'text/plain' });
+  res.end('Hello, Node.js Server!');
+});
+
+server.listen(PORT, () => {
+  console.info(`Ready on port ${PORT}`);
+});
+
