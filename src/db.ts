@@ -5,4 +5,9 @@ interface User {
   hobbies: string[];
 }
 
-export const bd: User[] = [];
+export const bd: User[] = [{
+  id: "User1",
+  username: "Default User",
+  age: 1,
+  hobbies: []
+}];
