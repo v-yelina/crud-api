@@ -2,7 +2,7 @@ import { IncomingMessage, ServerResponse } from "http";
 import * as check from "../utils/checkId";
 import * as model from "./user.model";
 import * as typeCheck from "../utils/checkType"
-import { User } from "db";
+import { User } from "types";
 
 export const getAllUsers = async (_req: IncomingMessage, res: ServerResponse) => {
   try {
@@ -94,6 +94,31 @@ export const putUserById = async (req: IncomingMessage, res: ServerResponse, id:
           return;
         }
       })
+    } catch (error) {
+      res.writeHead(500, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify({ message: 'Internal Server Error: Please try again later.' }));
+    }
+  }
+};
+
+export const deleteUserById = async (_req: IncomingMessage, res: ServerResponse, id: string | undefined) => {
+  if (id) {
+    try {
+      if (!check.checkUUID(id)) {
+        res.writeHead(400, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({ message: 'User id is invalid' }));
+        return;
+      }
+      const user = await model.findUser(id);
+      if (user == undefined) {
+        res.writeHead(404, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ message: 'User with such ID was not found' }));
+        return;
+      }
+      await model.deleteUser(id);
+
+      res.writeHead(204, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ message: `User with id: ${id} was deleted` }));
     } catch (error) {
       res.writeHead(500, { 'Content-Type': 'application/json' })
       res.end(JSON.stringify({ message: 'Internal Server Error: Please try again later.' }));

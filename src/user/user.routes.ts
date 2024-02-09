@@ -30,6 +30,9 @@ export const routes = (req: IncomingMessage, res: ServerResponse) => {
     else if (method === 'PUT' && req.url === `/api/users/${userId}`) {
       controller.putUserById(req, res, userId);
     }
+    else if (method === 'DELETE' && req.url === `/api/users/${userId}`) {
+      controller.deleteUserById(req, res, userId);
+    }
     else {
       res.writeHead(404, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({
