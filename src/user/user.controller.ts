@@ -25,7 +25,7 @@ export const postNewUser = async (req: IncomingMessage, res: ServerResponse) => 
       const sampleData: Omit<User, 'id'> = { username: 'Sample name', age: 11, hobbies: ['String'] }
       if (typeCheck.isCorrectType(newUserData, sampleData)) {
         const newUser = await model.createNewUser(newUserData);
-        res.writeHead(200, { 'Content-Type': 'application/json' })
+        res.writeHead(201, { 'Content-Type': 'application/json' })
         res.end(JSON.stringify(newUser));
       } else {
         res.writeHead(400, { 'Content-Type': 'application/json' })

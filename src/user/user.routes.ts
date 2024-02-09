@@ -14,6 +14,7 @@ export const routes = (req: IncomingMessage, res: ServerResponse) => {
           controller.getAllUsers(req, res);
           break;
         case `/api/users/${userId}`:
+        case `/api/users/${userId}/`:
           controller.getUserById(req, res, userId);
           break
         default:
