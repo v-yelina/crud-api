@@ -2,12 +2,13 @@ import { IncomingMessage, ServerResponse } from 'http';
 import * as controller from './user.controller';
 
 export const routes = (req: IncomingMessage, res: ServerResponse) => {
-  const { method, url } = req;
+  const { method } = req;
   if (req.url) {
-    if (method === 'GET' && url) {
-      let userId = url.split('/')[3];
+    let userId = req.url.split('/')[3];
 
-      switch (url) {
+    if (method === 'GET') {
+
+      switch (req.url) {
         case '/api/users':
         case '/api/users/':
           controller.getAllUsers(req, res);
@@ -23,8 +24,11 @@ export const routes = (req: IncomingMessage, res: ServerResponse) => {
       }
 
     }
-    else if (method === 'POST' && url === '/api/users') {
+    else if (method === 'POST' && (req.url === '/api/users' || req.url === '/api/users/')) {
       controller.postNewUser(req, res);
+    }
+    else if (method === 'PUT' && req.url === `/api/users/${userId}`) {
+      controller.putUserById(req, res, userId);
     }
     else {
       res.writeHead(404, { 'Content-Type': 'application/json' });

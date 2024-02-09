@@ -21,3 +21,14 @@ export const findUser = (userID: string) => {
     resolve(user);
   });
 }
+
+export const updateUser = (userData: db.User) => {
+  return new Promise((resolve, _reject) => {
+    const user: db.User | undefined = db.db.find(user => user.id == userData.id);
+    if (user) {
+      let userIndex = db.db.indexOf(user);
+      db.db[userIndex] = { ...userData };
+    }
+    resolve(userData);
+  });
+}
