@@ -27,10 +27,10 @@ export const routes = (req: IncomingMessage, res: ServerResponse) => {
     else if (method === 'POST' && (req.url === '/api/users' || req.url === '/api/users/')) {
       controller.postNewUser(req, res);
     }
-    else if (method === 'PUT' && req.url === `/api/users/${userId}`) {
+    else if (method === 'PUT' && (req.url === `/api/users/${userId}` || req.url === `/api/users/${userId}/`)) {
       controller.putUserById(req, res, userId);
     }
-    else if (method === 'DELETE' && req.url === `/api/users/${userId}`) {
+    else if (method === 'DELETE' && (req.url === `/api/users/${userId}` || req.url === `/api/users/${userId}/`)) {
       controller.deleteUserById(req, res, userId);
     }
     else {
