@@ -14,3 +14,10 @@ export const createNewUser = (userData: Omit<db.User, 'id'>) => {
     resolve(newUser);
   });
 }
+
+export const findUser = (userID: string) => {
+  return new Promise((resolve, _reject) => {
+    const user: db.User | undefined = db.db.find(user => user.id == userID);
+    resolve(user);
+  });
+}
