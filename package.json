@@ -9,7 +9,8 @@
     "test": "jest --silent",
     "test:verbose": "jest",
     "build": "tsc",
-    "start": "ts-node src/index.ts"
+    "start:dev": "ts-node-dev src/index.ts",
+    "start:prod": "webpack && node dist/bundle.js"
   },
   "repository": {
     "type": "git",
