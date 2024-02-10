@@ -5,6 +5,14 @@
 ### **Description**
 The task is to implement simple CRUD API using in-memory database underneath.
 
+### **To run an application**
+`git clone git@github.com:v-yelina/crud-api.git`
+`cd crud-api`
+`git checkout development`
+`npm run start:prod` to start the build process and then runs the bundled file OR
+`npm run start:dev` to run in development mode
+`npm run test` to start tests
+
 #### Implemented endpoint api/users:
 **GET api/users** is used to get all persons
 - Server should answer with status code *200* and all users records
